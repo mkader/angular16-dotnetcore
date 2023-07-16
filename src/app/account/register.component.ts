@@ -4,11 +4,12 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
 import { AccountService, AlertService } from '@app/_services';
+import { MustMatch } from '@app/_helpers';
 
 @Component({ templateUrl: 'register.component.html' })
 export class RegisterComponent implements OnInit {
     form!: FormGroup;
-    loading = false;
+    submitting = false;
     submitted = false;
 
     constructor(
@@ -17,19 +18,19 @@ export class RegisterComponent implements OnInit {
         private router: Router,
         private accountService: AccountService,
         private alertService: AlertService
-    ) {
-        // redirect to home if already logged in
-        if (this.accountService.userValue) {
-            this.router.navigate(['/']);
-        }
-    }
+    ) { }
 
     ngOnInit() {
         this.form = this.formBuilder.group({
+            title: ['', Validators.required],
             firstName: ['', Validators.required],
             lastName: ['', Validators.required],
-            username: ['', Validators.required],
-            password: ['', [Validators.required, Validators.minLength(6)]]
+            email: ['', [Validators.required, Validators.email]],
+            password: ['', [Validators.required, Validators.minLength(6)]],
+            confirmPassword: ['', Validators.required],
+            acceptTerms: [false, Validators.requiredTrue]
+        }, {
+            validator: MustMatch('password', 'confirmPassword')
         });
     }
 
@@ -39,7 +40,7 @@ export class RegisterComponent implements OnInit {
     onSubmit() {
         this.submitted = true;
 
-        // reset alert on submit
+        // reset alerts on submit
         this.alertService.clear();
 
         // stop here if form is invalid
@@ -47,17 +48,17 @@ export class RegisterComponent implements OnInit {
             return;
         }
 
-        this.loading = true;
+        this.submitting = true;
         this.accountService.register(this.form.value)
             .pipe(first())
             .subscribe({
                 next: () => {
-                    this.alertService.success('Registration successful', true);
-                    this.router.navigate(['/account/login'], { queryParams: { registered: true }});
+                    this.alertService.success('Registration successful, please check your email for verification instructions', { keepAfterRouteChange: true });
+                    this.router.navigate(['../login'], { relativeTo: this.route });
                 },
                 error: error => {
                     this.alertService.error(error);
-                    this.loading = false;
+                    this.submitting = false;
                 }
             });
     }

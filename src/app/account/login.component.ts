@@ -3,12 +3,12 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
-import { AccountService, AlertService } from '@app/_services'
+import { AccountService, AlertService } from '@app/_services';
 
 @Component({ templateUrl: 'login.component.html' })
 export class LoginComponent implements OnInit {
     form!: FormGroup;
-    loading = false;
+    submitting = false;
     submitted = false;
 
     constructor(
@@ -17,16 +17,11 @@ export class LoginComponent implements OnInit {
         private router: Router,
         private accountService: AccountService,
         private alertService: AlertService
-    ) {
-        // redirect to home if already logged in
-        if (this.accountService.userValue) {
-            this.router.navigate(['/']);
-        }
-    }
+    ) { }
 
     ngOnInit() {
         this.form = this.formBuilder.group({
-            username: ['', Validators.required],
+            email: ['', [Validators.required, Validators.email]],
             password: ['', Validators.required]
         });
     }
@@ -45,8 +40,8 @@ export class LoginComponent implements OnInit {
             return;
         }
 
-        this.loading = true;
-        this.accountService.login(this.f.username.value, this.f.password.value)
+        this.submitting = true;
+        this.accountService.login(this.f.email.value, this.f.password.value)
             .pipe(first())
             .subscribe({
                 next: () => {
@@ -56,7 +51,7 @@ export class LoginComponent implements OnInit {
                 },
                 error: error => {
                     this.alertService.error(error);
-                    this.loading = false;
+                    this.submitting = false;
                 }
             });
     }
