@@ -1,15 +1,10 @@
+
 import { Component, OnInit } from '@angular/core';
-import { NgFor, NgIf } from '@angular/common';
-import { RouterLink } from '@angular/router';
 import { first } from 'rxjs/operators';
 
 import { AccountService } from '@app/_services';
 
-@Component({
-    templateUrl: 'list.component.html',
-    standalone: true,
-    imports: [RouterLink, NgFor, NgIf]
-})
+@Component({ templateUrl: 'list.component.html' })
 export class ListComponent implements OnInit {
     users?: any[];
 
