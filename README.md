@@ -53,6 +53,7 @@ Node.js version v14.17.6 detected. The Angular CLI requires a minimum Node.js ve
 	nvm use 16  
 	npm install @angular/cli -g
 
+	npm start
 packages installed in the current folder
 	npm list --depth 0
 

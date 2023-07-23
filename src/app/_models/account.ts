@@ -1,12 +1,11 @@
-import { Role } from './role';
+﻿import { Role } from './role';
 
-export class User {
+export class Account {
     id?: string;
     title?: string;
     firstName?: string;
     lastName?: string;
     email?: string;
-    password?: string;
     role?: Role;
-    token?: string;
+    jwtToken?: string;
 }

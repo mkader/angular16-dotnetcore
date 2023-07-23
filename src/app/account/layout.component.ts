@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+﻿import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AccountService } from '@app/_services';
@@ -10,10 +10,8 @@ export class LayoutComponent {
         private accountService: AccountService
     ) {
         // redirect to home if already logged in
-        if (this.accountService.userValue) {
+        if (this.accountService.accountValue) {
             this.router.navigate(['/']);
         }
     }
-
-
 }

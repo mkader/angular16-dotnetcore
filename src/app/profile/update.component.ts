@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+﻿import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
@@ -8,7 +8,7 @@ import { MustMatch } from '@app/_helpers';
 
 @Component({ templateUrl: 'update.component.html' })
 export class UpdateComponent implements OnInit {
-    account = this.accountService.userValue!;
+    account = this.accountService.accountValue!;
     form!: FormGroup;
     submitting = false;
     submitted = false;

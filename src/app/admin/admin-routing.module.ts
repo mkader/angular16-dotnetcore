@@ -5,7 +5,7 @@ import { SubNavComponent } from './subnav.component';
 import { LayoutComponent } from './layout.component';
 import { OverviewComponent } from './overview.component';
 
-const accountsModule = () => import('./users/users.module').then(x => x.AccountsModule);
+const accountsModule = () => import('./accounts/accounts.module').then(x => x.AccountsModule);
 
 const routes: Routes = [
     { path: '', component: SubNavComponent, outlet: 'subnav' },
