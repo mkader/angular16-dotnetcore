@@ -10,9 +10,7 @@ import { AddEditComponent } from './add-edit.component';
     imports: [
         CommonModule,
         ReactiveFormsModule,
-        AccountsRoutingModule
-    ],
-    declarations: [
+        AccountsRoutingModule,
         ListComponent,
         AddEditComponent
     ]

@@ -62,3 +62,12 @@ ng : File C:\Users\...\ng.ps1 cannot be loaded because running scripts is disabl
 
 find the version of Angular CLI in the current folder
 	ng --version (or ng -v)
+
+Standalone : 
+	https://www.thisdot.co/blog/how-to-create-standalone-components-in-angular/	
+	https://codelabs.developers.google.com/angular-standalone-components#0
+
+	/angular16-dotnetcore (main) $ 
+		ng generate application blog-app
+		ng build blog-app
+		ng serve blog-app
