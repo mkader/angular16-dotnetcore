@@ -1,15 +1,20 @@
 ﻿import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute, RouterLink } from '@angular/router';
 import { first } from 'rxjs/operators';
 
 import { AccountService, AlertService } from '@app/_services';
+import { NgIf } from '@angular/common';
 
 enum EmailStatus {
     Verifying,
     Failed
 }
 
-@Component({ templateUrl: 'verify-email.component.html' })
+@Component({
+    templateUrl: 'verify-email.component.html',
+    standalone: true,
+    imports: [NgIf, RouterLink]
+})
 export class VerifyEmailComponent implements OnInit {
     EmailStatus = EmailStatus;
     emailStatus = EmailStatus.Verifying;

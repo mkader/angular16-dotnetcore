@@ -14,9 +14,7 @@ import { ResetPasswordComponent } from './reset-password.component';
     imports: [
         CommonModule,
         ReactiveFormsModule,
-        AccountRoutingModule
-    ],
-    declarations: [
+        AccountRoutingModule,
         LayoutComponent,
         LoginComponent,
         RegisterComponent,
