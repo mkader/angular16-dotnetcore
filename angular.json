@@ -3,9 +3,13 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "angular-tutorial": {
+    "angular-15-example": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "less"
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -13,19 +17,18 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/angular-tutorial",
+            "outputPath": "dist/angular-15-example",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "polyfills": [
-              "zone.js"
-            ],
+            "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
+            "inlineStyleLanguage": "less",
             "assets": [
               "src/favicon.ico",
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.less"
             ],
             "scripts": []
           },
@@ -41,6 +44,12 @@
                   "type": "anyComponentStyle",
                   "maximumWarning": "2kb",
                   "maximumError": "4kb"
+                }
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
                 }
               ],
               "outputHashing": "all"
@@ -60,10 +69,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "angular-tutorial:build:production"
+              "browserTarget": "angular-15-example:build:production"
             },
             "development": {
-              "browserTarget": "angular-tutorial:build:development"
+              "browserTarget": "angular-15-example:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -71,23 +80,23 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "angular-tutorial:build"
+            "browserTarget": "angular-15-example:build"
           }
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "polyfills": [
-              "zone.js",
-              "zone.js/testing"
-            ],
+            "main": "src/test.ts",
+            "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.spec.json",
+            "karmaConfig": "karma.conf.js",
+            "inlineStyleLanguage": "less",
             "assets": [
               "src/favicon.ico",
               "src/assets"
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles.less"
             ],
             "scripts": []
           }

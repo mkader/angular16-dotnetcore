@@ -11,7 +11,9 @@ import { OverviewComponent } from './overview.component';
     imports: [
         CommonModule,
         ReactiveFormsModule,
-        AdminRoutingModule,
+        AdminRoutingModule
+    ],
+    declarations: [
         SubNavComponent,
         LayoutComponent,
         OverviewComponent

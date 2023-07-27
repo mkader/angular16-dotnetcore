@@ -1,9 +1,4 @@
 ﻿import { Component } from '@angular/core';
-import { RouterLink } from '@angular/router';
 
-@Component({
-    templateUrl: 'overview.component.html',
-    standalone: true,
-    imports: [RouterLink]
-})
+@Component({ templateUrl: 'overview.component.html' })
 export class OverviewComponent { }

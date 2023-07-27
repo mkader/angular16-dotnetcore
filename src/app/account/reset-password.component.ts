@@ -1,11 +1,10 @@
 ﻿import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute, RouterLink } from '@angular/router';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { Router, ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { first } from 'rxjs/operators';
 
 import { AccountService, AlertService } from '@app/_services';
 import { MustMatch } from '@app/_helpers';
-import { NgIf, NgClass } from '@angular/common';
 
 enum TokenStatus {
     Validating,
@@ -13,11 +12,7 @@ enum TokenStatus {
     Invalid
 }
 
-@Component({
-    templateUrl: 'reset-password.component.html',
-    standalone: true,
-    imports: [NgIf, RouterLink, ReactiveFormsModule, NgClass]
-})
+@Component({ templateUrl: 'reset-password.component.html' })
 export class ResetPasswordComponent implements OnInit {
     TokenStatus = TokenStatus;
     tokenStatus = TokenStatus.Validating;

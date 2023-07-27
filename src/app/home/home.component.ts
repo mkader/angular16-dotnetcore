@@ -2,10 +2,7 @@
 
 import { AccountService } from '@app/_services';
 
-@Component({
-    templateUrl: 'home.component.html',
-    standalone: true
-})
+@Component({ templateUrl: 'home.component.html' })
 export class HomeComponent {
     account = this.accountService.accountValue;
 
